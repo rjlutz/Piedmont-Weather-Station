@@ -1,8 +1,8 @@
 import https from 'https';
 
-const apiKey = 'c5hl3euhqgih7xk5yonp6uch8apbojmb';
-const apiSecret = 'fqfj2rzo9ew4ngxacffkxyrarj06nppo';
-const stationId = '48e9f1e1-108e-449d-a8bb-18126f248576';
+const apiKey = 'XXXX';
+const apiSecret = 'XXXX';
+const stationId = 'XXXX';
 const apiUrl = `https://api.weatherlink.com/v2/current/${stationId}?api-key=${apiKey}`;
 
 const options = {
