@@ -25,7 +25,8 @@ export const handler = async (event, context) => {
         if (res.statusCode === 200) {
           try {
             const weatherData = JSON.parse(data);
-
+            const tsZulu = new Date(weatherData.sensors[2].data[0].ts * 1000).toLocaleString()
+            
             console.log('Successfully fetched weather data:', weatherData);
 
             const htmlResponse = `
@@ -70,13 +71,13 @@ export const handler = async (event, context) => {
               <body>
                 <div id="weather-container">
                   <h1>Weather Data</h1>
+                  <p>Update Time: ${tsZulu} Zulu</p>
                   <p>Temperature: ${weatherData.sensors[2].data[0].temp}°F</p>
                   <p>Humidity: ${weatherData.sensors[2].data[0].hum}%</p>
                   <p>Wind Speed: ${weatherData.sensors[2].data[0].wind_speed_avg_last_10_min} mph</p>
                   <p>Wind Gusting: ${weatherData.sensors[2].data[0].wind_speed_hi_last_2_min} mph</p>
                   <p>Rainfall (15 Min): ${weatherData.sensors[2].data[0].rainfall_last_15_min_in} inches</p>
                   <p>Rainfall (24 Hrs): ${weatherData.sensors[2].data[0].rainfall_last_24_hr_in} inches</p>
-                  <p>Timestamp: ${new Date(weatherData.sensors[2].data[0].ts * 1000).toLocaleString()} Zulu</p>
                   <!-- Add more data points here -->
                 </div>
               </body>
